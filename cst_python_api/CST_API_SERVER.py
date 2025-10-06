@@ -1,20 +1,5 @@
 from re import I
 from mcp.server.fastmcp import FastMCP
-from .Boolean import Boolean
-from .Build import Build
-from .CheckParam import CheckParam
-from .Component import Component
-from .CST_MicrowaveStudio import CST_MicrowaveStudio
-from .Material import Material,materials_dir
-from .Parameter import Parameter
-from .Port import Port
-from .Project import Project
-from .Results import Results
-from .Shape import Shape
-from .Solver import Solver
-from .Transform import Transform
-from .feed import create_coax_and_port
-from .farfield import _validate_common_inputs, get_axial_ratio_at_freq, get_gain_at_freq
 
 
 
@@ -86,15 +71,8 @@ mcp.tool(Solver.defineFloquetModes)
 mcp.tool(Solver.runSimulation)
 
 mcp.tool(create_coax_and_port)
-mcp.tool(_validate_common_inputs)
 mcp.tool(get_axial_ratio_at_freq)
 mcp.tool(get_gain_at_freq)
-
-# Adicionar como recurso
-@mcp.resource("materials_dir")
-def get_materials_dir():
-    """Diretório global dos materiais CST Studio Suite."""
-    return str(materials_dir)
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")
